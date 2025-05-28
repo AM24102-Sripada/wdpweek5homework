@@ -1,86 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Quote generator homework</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            padding: 2em;
-            background-color: #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        #quoteBox {
-            background: #fff;
-            padding: 1em;
-            border-radius: 8px;
-            margin-bottom: 1em;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        button {
-            padding: 0.5em 1em;
-            font-size: 1rem;
-        }
-
-        footer {
-            margin-top: auto;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #555;
-            padding-top: 2em;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f4f4f4;
+      color: #333;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+    }
+    .quiz-box {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #question-count {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 1rem;
+      text-align: right;
+    }
+    #question {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .option {
+      display: block;
+      margin: 0.5rem 0;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    #result {
+      margin-top: 2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
 </head>
-
 <body>
 
-    <h1>Quote generator homework</h1>
-    <h2>Create by Sripada AM24102</h2> <div id="quoteBox">
-        <p id="quote">Click the button to get a quote!</p>
-        <p id="author"></p>
-    </div>
+  <h1>JavaScript Quiz</h1>
+  <div class="quiz-box">
+    <div id="question-count">Question 1 of 30</div>
+    <div id="question">Question will appear here</div>
+    <div id="options"></div>
+    <button id="nextBtn">Next</button>
+    <div id="result"></div>
+  </div>
 
-    <button id="newQuoteBtn">New Quote</button>
-
-    <footer>
-        Web Design and Programming — Shibaura Institute of Technology — Spring 2025
-    </footer>
-
-    <script>
-        const quoteText = document.getElementById("quote");
-        const authorText = document.getElementById("author");
-        const newQuoteBtn = document.getElementById("newQuoteBtn");
-
-        function getQuote() {
-          fetch("quotes.json")
-           .then(response => response.json())
-           .then(data => {
-             if (data && data.length > 0) { // The data is now an array directly
-              const randomIndex = Math.floor(Math.random() * data.length);
-              const randomQuote = data[randomIndex];
-              quoteText.textContent = randomQuote.q; // Access the 'q' property
-              authorText.textContent = `- ${randomQuote.a || "Unknown"}`; // Access the 'a' property
-              } else {
-                  quoteText.textContent = "Failed to load quotes.";
-                  authorText.textContent = "";
-                 }
-      })
-    .catch(error => {
-      console.error("Error fetching quotes:", error);
-      quoteText.textContent = "Error loading quotes.";
-      authorText.textContent = "";
-     });
-}
-
-newQuoteBtn.addEventListener("click", getQuote);
-getQuote(); // Load a quote on page load
-    </script>
-
+  <script src="script.js"></script>
 </body>
-
 </html>
